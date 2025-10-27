@@ -277,8 +277,11 @@ public class Program {
 	}
 
 	public static boolean checkName(ArrayList<Product> productList, String name) {
+		if( name == null || name.trim().isBlank()) {
+			return false;
+		}
 		for (Product p : productList) {
-			if (p.getName().equalsIgnoreCase(name) || name == null || name.trim().isBlank()) {
+			if (p.getName().equalsIgnoreCase(name) ) {
 				return false;
 			}
 		}
