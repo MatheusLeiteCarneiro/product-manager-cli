@@ -12,7 +12,7 @@ public class Product {
 	public Product(int id, String name, double price, int quantity) {
 		this.id = id;
 		this.name = name;
-		setPrice(price);
+		this.price = price;
 		this.quantity = quantity;
 	}
 
@@ -34,10 +34,10 @@ public class Product {
 
 	public boolean setPrice(double price) {
 		if (price < 0) {
-			return true;
+			return false;
 		}
 		this.price = price;
-		return false;
+		return true;
 	}
 
 	public int getQuantity() {
@@ -46,20 +46,20 @@ public class Product {
 
 	public boolean addQuantity(int quantity) {
 		if (quantity < 0) {
-			return true;
+			return false;
 		}
 
 		this.quantity += quantity;
-		return false;
+		return true;
 	}
 
 	public boolean removeQuantity(int quantity) {
 		if (quantity < 0 || this.quantity < quantity) {
-			return true;
+			return false;
 		}
 
 		this.quantity -= quantity;
-		return false;
+		return true;
 	}
 
 	@Override

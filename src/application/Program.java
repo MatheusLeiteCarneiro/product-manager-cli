@@ -23,6 +23,7 @@ public class Program {
 			System.out.println("0-to end operation");
 			operation = sc.nextInt();
 			System.out.println();
+			int findIdIndex;
 			switch (operation) {
 			case 1:
 				System.out.println("Registering product:");
@@ -38,8 +39,8 @@ public class Program {
 				System.out.print("Product name: ");
 				String name = sc.nextLine();
 				boolean verifyName = checkName(productList, name);
-				while (verifyName) {
-					System.out.print("This Name is already registered, try another one:");
+				while (!verifyName) {
+					System.out.print("This name is invalid or already register, try another one: ");
 					name = sc.nextLine();
 					verifyName = checkName(productList, name);
 				}
@@ -62,69 +63,135 @@ public class Program {
 				break;
 
 			case 2:
-				if (productList.size() == 0) {
-					System.out.println("There isn't any product registered yet");
+				if (!verifyIfHaveProduct(productList)) {
 				} else {
 					for (Product p : productList) {
 						System.out.print(p);
 					}
+					System.out.println();
 				}
-				System.out.println();
 				break;
 
 			case 3:
-				System.out.print("Type the ID of the Product you want add or remove a quantity");
-				int addOrRemoveId = sc.nextInt();
-				int findIdIndex = findIdIndex(productList, addOrRemoveId);
-				while (findIdIndex == -1) {
-					System.out.print("This ID does not exist, type a valid id: ");
-					addOrRemoveId = sc.nextInt();
-					findIdIndex = findIdIndex(productList, addOrRemoveId);
-				}
+				if (!verifyIfHaveProduct(productList)) {
+				} else {
 
-				System.out.println("The product is: " + productList.get(findIdIndex));
-				System.out.print("Type 1-to add to stock or 2-to remove from stock: ");
-				int addOrRemove = sc.nextInt();
-				while (addOrRemove != 1 && addOrRemove != 2) {
-					System.out.print("Invalid digit, type 1 to add or 2 to remove: ");
-					addOrRemove = sc.nextInt();
-				}
-				if (addOrRemove == 1) {
-					System.out.print("Type the quantity you want to add to the stock: ");
-					int addOrRemoveQuantity = sc.nextInt();
-					boolean verifyQuantity = productList.get(findIdIndex).addQuantity(addOrRemoveQuantity);
-					while (verifyQuantity) {
-						System.out.println("Invalid quantity, type a valid number to add: ");
-						addOrRemoveQuantity = sc.nextInt();
-						verifyQuantity = productList.get(findIdIndex).addQuantity(addOrRemoveQuantity);
+					System.out.print("Type the ID of the Product you want add or remove a quantity");
+					int addOrRemoveId = sc.nextInt();
+					int idIndex = findIdIndex(productList, addOrRemoveId);
+					while (idIndex == -1) {
+						System.out.print("This ID does not exist, type a valid id: ");
+						addOrRemoveId = sc.nextInt();
+						idIndex = findIdIndex(productList, addOrRemoveId);
 					}
-					System.out.println("The amount was succesfully added to the stock!");
-					System.out.println(
-							"Now there is " + productList.get(findIdIndex).getQuantity() + " available in stock\n");
 
-				}
-
-				else {
-					System.out.print("Type the quantity you want to remove from the stock: ");
-					int addOrRemoveQuantity = sc.nextInt();
-					boolean verifyQuantity = productList.get(findIdIndex).removeQuantity(addOrRemoveQuantity);
-					while (verifyQuantity) {
-						System.out.println("Invalid quantity, or you don't have this amount on the stock.");
-						System.out
-								.println("Your current stock amount is :" + productList.get(findIdIndex).getQuantity());
-						System.out.println("Type a valid number to remove from stock: ");
-						addOrRemoveQuantity = sc.nextInt();
-						verifyQuantity = productList.get(findIdIndex).removeQuantity(addOrRemoveQuantity);
+					System.out.println("The product is: " + productList.get(idIndex));
+					System.out.print("Type 1-to add to stock or 2-to remove from stock: ");
+					int addOrRemove = sc.nextInt();
+					while (addOrRemove != 1 && addOrRemove != 2) {
+						System.out.print("Invalid digit, type 1 to add or 2 to remove: ");
+						addOrRemove = sc.nextInt();
 					}
-					System.out.println("The amount was succesfully removed from the stock!");
-					System.out.println("Now there is " + productList.get(findIdIndex).getQuantity()
-							+ "of this product available in stock\n");
+					if (addOrRemove == 1) {
+						System.out.print("Type the quantity you want to add to the stock: ");
+						int addOrRemoveQuantity = sc.nextInt();
+						boolean verifyQuantity = productList.get(idIndex).addQuantity(addOrRemoveQuantity);
+						while (!verifyQuantity) {
+							System.out.println("Invalid quantity, type a valid number to add: ");
+							addOrRemoveQuantity = sc.nextInt();
+							verifyQuantity = productList.get(idIndex).addQuantity(addOrRemoveQuantity);
+						}
+						System.out.println("The amount was succesfully added to the stock!");
+						System.out.println("Now there is " + productList.get(idIndex).getQuantity()
+								+ " unit(s) of this product available in stock\n");
 
+					}
+
+					else {
+						System.out.print("Type the quantity you want to remove from the stock: ");
+						int addOrRemoveQuantity = sc.nextInt();
+						boolean verifyQuantity = productList.get(idIndex).removeQuantity(addOrRemoveQuantity);
+						while (!verifyQuantity) {
+							System.out.println("Invalid quantity, or you don't have this amount on the stock.");
+							System.out
+									.println("Your current stock amount is :" + productList.get(idIndex).getQuantity());
+							System.out.print("Type a valid number to remove from stock: ");
+							addOrRemoveQuantity = sc.nextInt();
+							verifyQuantity = productList.get(idIndex).removeQuantity(addOrRemoveQuantity);
+						}
+						System.out.println("\nThe amount was succesfully removed from the stock!");
+						System.out.println("Now there is " + productList.get(idIndex).getQuantity()
+								+ " unit(s) of this product available in stock\n");
+
+					}
 				}
-
 				break;
 
 			case 4:
+				if (!verifyIfHaveProduct(productList)) {
+				} else {
+					System.out.print("Type the ID of the Product you want to change information: ");
+					int idChangeProduct = sc.nextInt();
+					findIdIndex = findIdIndex(productList, idChangeProduct);
+					while (findIdIndex == -1) {
+						System.out.print("This ID does not exist, type a valid id: ");
+						int addOrRemoveId = sc.nextInt();
+						findIdIndex = findIdIndex(productList, addOrRemoveId);
+					}
+
+					System.out.println("The product is: " + productList.get(findIdIndex));
+					System.out.println("What information do you want to change?");
+					System.out.print("Type 1-to change the name, 2-to change the price, 3-to change both: ");
+					int informationToChange = sc.nextInt();
+					System.out.println();
+					while (informationToChange != 1 && informationToChange != 2 && informationToChange != 3) {
+						System.out.print("Invalid digit, type 1, 2 or 3: ");
+						informationToChange = sc.nextInt();
+					}
+
+					if (informationToChange == 1 || informationToChange == 3) {
+						System.out.println(
+								"The actual name of this product is: " + productList.get(findIdIndex).getName());
+						System.out.print("Type the new name of the product: ");
+						sc.nextLine();
+						String newName = sc.nextLine();
+						verifyName = checkName(productList, newName);
+						while (!verifyName) {
+							System.out.print("This name is invalid or already register, try another one: ");
+							newName = sc.nextLine();
+							verifyName = checkName(productList, newName);
+						}
+						productList.get(findIdIndex).setName(newName);
+
+						if (informationToChange == 1) {
+							System.out.println("The new name of this product is: "
+									+ productList.get(findIdIndex).getName() + "\n");
+						}
+
+					}
+
+					if (informationToChange == 2 || informationToChange == 3) {
+						System.out.println(
+								"\nThe actual price of this product is: " + productList.get(findIdIndex).getPrice());
+						System.out.print("Type the new price of the product: ");
+						double newPrice = sc.nextDouble();
+						boolean changePrice = productList.get(findIdIndex).setPrice(newPrice);
+						while (!changePrice) {
+							System.out.print("The price must be greater than 0, type another price: ");
+							newPrice = sc.nextDouble();
+							changePrice = productList.get(findIdIndex).setPrice(newPrice);
+						}
+						if (informationToChange == 2) {
+							System.out.println("The new price of this product is: "
+									+ productList.get(findIdIndex).getPrice() + "\n");
+						}
+					}
+					if (informationToChange == 3) {
+						System.out.println("The new name of this product is: " + productList.get(findIdIndex).getName()
+								+ ", and the new price of this product is: " + productList.get(findIdIndex).getPrice());
+					}
+
+				}
 
 				break;
 
@@ -146,6 +213,14 @@ public class Program {
 		sc.close();
 	}
 
+	public static boolean verifyIfHaveProduct(ArrayList<Product> productList) {
+		if (productList.size() == 0) {
+			System.out.println("There isn't any product registered yet\n");
+			return false;
+		}
+		return true;
+	}
+
 	public static int findIdIndex(ArrayList<Product> productList, int id) {
 		for (int i = 0; i < productList.size(); i++) {
 			if (productList.get(i).getId() == id) {
@@ -158,12 +233,12 @@ public class Program {
 
 	public static boolean checkName(ArrayList<Product> productList, String name) {
 		for (Product p : productList) {
-			if (p.getName().equalsIgnoreCase(name)) {
-				return true;
+			if (p.getName().equalsIgnoreCase(name) || name == null || name.trim().isBlank()) {
+				return false;
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 }
