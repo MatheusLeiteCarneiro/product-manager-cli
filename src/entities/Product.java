@@ -5,7 +5,7 @@ public class Product {
 	private String name;
 	private double price;
 	private int quantity;
-	
+
 	public Product() {
 	}
 
@@ -16,11 +16,10 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -34,7 +33,7 @@ public class Product {
 	}
 
 	public boolean setPrice(double price) {
-		if(price < 0) {
+		if (price < 0) {
 			return true;
 		}
 		this.price = price;
@@ -45,21 +44,28 @@ public class Product {
 		return quantity;
 	}
 
+	public boolean addQuantity(int quantity) {
+		if (quantity < 0) {
+			return true;
+		}
+
+		this.quantity += quantity;
+		return false;
+	}
+
+	public boolean removeQuantity(int quantity) {
+		if (quantity < 0 || this.quantity < quantity) {
+			return true;
+		}
+
+		this.quantity -= quantity;
+		return false;
+	}
+
 	@Override
 	public String toString() {
-		return "Product id:" + id + ", name:" + name + ", price:" + String.format("%.2f", price) 
-		+ ", current quantity in stock:" + quantity + ", total value of this product in stock:" + String.format("%.2f", price*quantity) + "\n"; 
+		return "ID: " + id + " | Name: " + name + " | Price:" + String.format("%.2f", price)
+				+ " | Current quantity in stock:" + quantity + " |\n";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
