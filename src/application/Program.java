@@ -21,14 +21,15 @@ public class Program {
 			System.out.println("4-change the information of a product, 5-to delete a product from stock, 6-calculate value in stock");
 			System.out.println("0-to end operation");
 			operation = sc.nextInt();
+			System.out.println();
 			switch (operation) {
 				case 1:	
-					System.out.print("\nRegistering product:\n");
+					System.out.println("Registering product:");
 					System.out.print("Product id: ");
 					int id = sc.nextInt();
 					boolean verifyId = checkId(productList, id);
 					while(verifyId) {
-						System.out.println("This Id is already registered, try another one:");
+						System.out.print("This Id is already registered, try another one:");
 						id = sc.nextInt();
 						verifyId = checkId(productList, id);
 					}
@@ -37,7 +38,7 @@ public class Program {
 					String name = sc.nextLine();
 					boolean verifyName = checkName(productList, name);
 					while(verifyName) {
-						System.out.println("This Name is already registered, try another one:");
+						System.out.print("This Name is already registered, try another one:");
 						name = sc.nextLine();
 						verifyName = checkName(productList, name);
 					}
@@ -58,18 +59,31 @@ public class Program {
 					productList.add(new Product(id,name,price,quantity));
 					System.out.print("The product was successfully registered!\n\n");
 					break;
-				case 2:
 					
+				case 2:
+					if(productList.size() == 0) {
+						System.out.println("There isn't any product registered yet");
+					}
+					else {
+						for(Product p : productList) {
+							System.out.print(p);
+						}	
+					}
+					System.out.println();
 					break;
+					
 				case 3:
 					
 					break;
+					
 				case 4:
 					
 					break;
+					
 				case 5:
 					
 					break;	
+					
 				case 0:
 					
 					break;	

@@ -44,6 +44,19 @@ public class Product {
 	public int getQuantity() {
 		return quantity;
 	}
+
+	@Override
+	public String toString() {
+		return "Product id:" + id + ", name:" + name + ", price:" + String.format("%.2f", price) 
+		+ ", current quantity in stock:" + quantity + ", total value of this product in stock:" + String.format("%.2f", price*quantity) + "\n"; 
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
