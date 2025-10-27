@@ -188,7 +188,7 @@ public class Program {
 					}
 					if (informationToChange == 3) {
 						System.out.println(
-								"/nThe name was succesfully changed to " + productList.get(findIdIndex).getName()
+								"\nThe name was succesfully changed to " + productList.get(findIdIndex).getName()
 										+ ", and the price was succesfully changed to $"
 										+ productList.get(findIdIndex).getPrice() + "\n");
 					}
@@ -277,11 +277,11 @@ public class Program {
 	}
 
 	public static boolean checkName(ArrayList<Product> productList, String name) {
-		if( name == null || name.trim().isBlank()) {
+		if (name == null || name.trim().isBlank()) {
 			return false;
 		}
 		for (Product p : productList) {
-			if (p.getName().equalsIgnoreCase(name) ) {
+			if (p.getName().equalsIgnoreCase(name)) {
 				return false;
 			}
 		}
@@ -292,6 +292,7 @@ public class Program {
 	public static double totalValueInStock(ArrayList<Product> productList) {
 		double total = 0.0;
 		for (Product p : productList) {
+			System.out.println(p.totalValueString());
 			total += p.getPrice() * p.getQuantity();
 		}
 		System.out.printf("The total value in stock is: $%.2f%n%n", total);

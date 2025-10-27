@@ -68,4 +68,9 @@ public class Product {
 				+ " | Current quantity in stock:" + quantity + " |\n";
 	}
 
+	public String totalValueString() {
+		return "ID: " + id + " | Name: " + name + " | Total value of this product in stock: $"
+				+ String.format("%.2f", price * quantity) + " |";
+	}
+
 }
