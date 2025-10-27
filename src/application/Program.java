@@ -20,7 +20,7 @@ public class Program {
 					"1-to register a new product, 2-to list all the products in stock, 3-to add or remove quantity to an existing product");
 			System.out.println(
 					"4-change the information of a product, 5-to delete a product from stock, 6-calculate value in stock");
-			System.out.println("0-to end operation");
+			System.out.println("0-to finish the operations");
 			operation = sc.nextInt();
 			System.out.println();
 			int findIdIndex;
@@ -76,7 +76,7 @@ public class Program {
 				if (!verifyIfHaveProduct(productList)) {
 				} else {
 
-					System.out.print("Type the ID of the Product you want add or remove a quantity");
+					System.out.print("Type the ID of the Product you want add or remove a quantity: ");
 					int addOrRemoveId = sc.nextInt();
 					int idIndex = findIdIndex(productList, addOrRemoveId);
 					while (idIndex == -1) {
@@ -164,8 +164,8 @@ public class Program {
 						productList.get(findIdIndex).setName(newName);
 
 						if (informationToChange == 1) {
-							System.out.println("The new name of this product is: "
-									+ productList.get(findIdIndex).getName() + "\n");
+							System.out.println("The name was succesfully changed to "
+									+ productList.get(findIdIndex).getName() + "!\n");
 						}
 
 					}
@@ -182,13 +182,15 @@ public class Program {
 							changePrice = productList.get(findIdIndex).setPrice(newPrice);
 						}
 						if (informationToChange == 2) {
-							System.out.println("The new price of this product is: $"
-									+ productList.get(findIdIndex).getPrice() + "\n");
+							System.out.println("The price was succesfully changed to $"
+									+ productList.get(findIdIndex).getPrice() + "!\n");
 						}
 					}
 					if (informationToChange == 3) {
-						System.out.println("The new name of this product is: " + productList.get(findIdIndex).getName()
-								+ ", and the new price of this product is: $" + productList.get(findIdIndex).getPrice());
+						System.out.println(
+								"/nThe name was succesfully changed to " + productList.get(findIdIndex).getName()
+										+ ", and the price was succesfully changed to $"
+										+ productList.get(findIdIndex).getPrice() + "\n");
 					}
 
 				}
@@ -230,12 +232,19 @@ public class Program {
 				} else {
 					totalValueInStock(productList);
 				}
-				
-				
 
 				break;
 
 			case 0:
+				if (!verifyIfHaveProduct(productList)) {
+				} else {
+					System.out.println("Final Data:");
+					for (Product p : productList) {
+						System.out.print(p);
+					}
+					totalValueInStock(productList);
+				}
+				System.out.println("Operations finished!");
 
 				break;
 
@@ -251,7 +260,7 @@ public class Program {
 
 	public static boolean verifyIfHaveProduct(ArrayList<Product> productList) {
 		if (productList.size() == 0) {
-			System.out.println("There isn't any product registered yet\n");
+			System.out.println("There aren't products registered\n");
 			return false;
 		}
 		return true;
@@ -276,15 +285,15 @@ public class Program {
 
 		return true;
 	}
-	
+
 	public static double totalValueInStock(ArrayList<Product> productList) {
 		double total = 0.0;
-		for(Product p : productList) {
+		for (Product p : productList) {
 			total += p.getPrice() * p.getQuantity();
 		}
-		System.out.printf("The total value in stock is: $%.2f%n%n",total);
+		System.out.printf("The total value in stock is: $%.2f%n%n", total);
 		return total;
-		
+
 	}
 
 }
