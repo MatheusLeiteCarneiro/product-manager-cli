@@ -9,10 +9,11 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(int id, String name, double price) {
+	public Product(int id, String name, double price, int quantity) {
 		this.id = id;
 		this.name = name;
-		this.price = price;
+		setPrice(price);
+		this.quantity = quantity;
 	}
 
 
@@ -32,8 +33,12 @@ public class Product {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public boolean setPrice(double price) {
+		if(price < 0) {
+			return true;
+		}
 		this.price = price;
+		return false;
 	}
 
 	public int getQuantity() {
