@@ -196,6 +196,36 @@ public class Program {
 				break;
 
 			case 5:
+				if (!verifyIfHaveProduct(productList)) {
+				} else {
+					System.out.print("Type the ID of the product you want to delete it: ");
+					int idToDelete = sc.nextInt();
+					findIdIndex = findIdIndex(productList, idToDelete);
+					while (findIdIndex == -1) {
+						System.out.print("This ID does not exist, type a valid id: ");
+						int addOrRemoveId = sc.nextInt();
+						findIdIndex = findIdIndex(productList, addOrRemoveId);
+					}
+					System.out.println("Confirm deletion of the following product?");
+					System.out.println(productList.get(findIdIndex));
+					System.out.print("Type 1-to confirm or 0-to cancel: ");
+					int confirmDeletion = sc.nextInt();
+					while (confirmDeletion != 0 && confirmDeletion != 1) {
+						System.out.print("invalid value, type 1-to confirm or 0-to cancel");
+						confirmDeletion = sc.nextInt();
+					}
+					if (confirmDeletion == 1) {
+						productList.remove(findIdIndex);
+						System.out.println("The product was succesfully deleted!\n");
+					} else {
+						System.out.println("Operation canceled\n");
+					}
+
+				}
+
+				break;
+
+			case 6:
 
 				break;
 
