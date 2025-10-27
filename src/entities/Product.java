@@ -64,7 +64,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "ID: " + id + " | Name: " + name + " | Price:" + String.format("%.2f", price)
+		return "ID: " + id + " | Name: " + name + " | Price: $" + String.format("%.2f", price)
 				+ " | Current quantity in stock:" + quantity + " |\n";
 	}
 

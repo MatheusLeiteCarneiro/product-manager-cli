@@ -172,7 +172,7 @@ public class Program {
 
 					if (informationToChange == 2 || informationToChange == 3) {
 						System.out.println(
-								"\nThe actual price of this product is: " + productList.get(findIdIndex).getPrice());
+								"\nThe actual price of this product is: $" + productList.get(findIdIndex).getPrice());
 						System.out.print("Type the new price of the product: ");
 						double newPrice = sc.nextDouble();
 						boolean changePrice = productList.get(findIdIndex).setPrice(newPrice);
@@ -182,13 +182,13 @@ public class Program {
 							changePrice = productList.get(findIdIndex).setPrice(newPrice);
 						}
 						if (informationToChange == 2) {
-							System.out.println("The new price of this product is: "
+							System.out.println("The new price of this product is: $"
 									+ productList.get(findIdIndex).getPrice() + "\n");
 						}
 					}
 					if (informationToChange == 3) {
 						System.out.println("The new name of this product is: " + productList.get(findIdIndex).getName()
-								+ ", and the new price of this product is: " + productList.get(findIdIndex).getPrice());
+								+ ", and the new price of this product is: $" + productList.get(findIdIndex).getPrice());
 					}
 
 				}
@@ -226,6 +226,12 @@ public class Program {
 				break;
 
 			case 6:
+				if (!verifyIfHaveProduct(productList)) {
+				} else {
+					totalValueInStock(productList);
+				}
+				
+				
 
 				break;
 
@@ -269,6 +275,16 @@ public class Program {
 		}
 
 		return true;
+	}
+	
+	public static double totalValueInStock(ArrayList<Product> productList) {
+		double total = 0.0;
+		for(Product p : productList) {
+			total += p.getPrice() * p.getQuantity();
+		}
+		System.out.printf("The total value in stock is: $%.2f%n%n",total);
+		return total;
+		
 	}
 
 }
