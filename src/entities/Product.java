@@ -72,5 +72,9 @@ public class Product {
 		return "ID: " + id + " | Name: " + name + " | Total value of this product in stock: $"
 				+ String.format("%.2f", price * quantity) + " |";
 	}
-
+	
+	public String finalDataString() {
+		return "ID: " + id + " | Name: " + name + " | Price: $" + String.format("%.2f", price)
+		+ " | Current quantity in stock:" + quantity + " | Total value of this product in stock: $" +  String.format("%.2f", price * quantity) + " |\n";
+	}
 }

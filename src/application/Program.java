@@ -113,8 +113,8 @@ public class Program {
 						boolean verifyQuantity = productList.get(idIndex).removeQuantity(addOrRemoveQuantity);
 						while (!verifyQuantity) {
 							System.out.println("Invalid quantity, or you don't have this amount on the stock.");
-							System.out
-									.println("Your current stock amount is :" + productList.get(idIndex).getQuantity());
+							System.out.println("Your current stock amount of this product is "
+									+ productList.get(idIndex).getQuantity() + " unit(s)");
 							System.out.print("Type a valid number to remove from stock: ");
 							addOrRemoveQuantity = sc.nextInt();
 							verifyQuantity = productList.get(idIndex).removeQuantity(addOrRemoveQuantity);
@@ -240,9 +240,9 @@ public class Program {
 				} else {
 					System.out.println("Final Data:");
 					for (Product p : productList) {
-						System.out.print(p);
+						System.out.print(p.finalDataString());
 					}
-					totalValueInStock(productList);
+					System.out.println();
 				}
 				System.out.println("Operations finished!");
 
