@@ -41,7 +41,7 @@ The main goal of this project was to master the following topics:
     * Robust validation of all user inputs.
 * **Professional Git Workflow:**
     * Creating a `.gitignore` to clean the repository.
-    * Using atomic commits for each feature or fix, with clear messages.
+    * Using commits for each feature or fix, with clear messages.
 
 ---
 
