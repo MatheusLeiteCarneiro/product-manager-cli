@@ -218,7 +218,7 @@ public class Program {
 					}
 					if (confirmDeletion == 1) {
 						productList.remove(findIdIndex);
-						System.out.println("The product was succesfully deleted!\n");
+						System.out.println("The product was successfully deleted!\n");
 					} else {
 						System.out.println("Operation canceled\n");
 					}
