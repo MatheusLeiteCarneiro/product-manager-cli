@@ -22,7 +22,7 @@ The system allows the user to perform the following operations:
 
 ## 🛠️ Technologies Used
 
-* **Java 17** * **Eclipse IDE** * **Git & GitHub** for version control.
+* **Java 25** * **Eclipse IDE** * **Git & GitHub** for version control.
 
 ---
 
@@ -47,12 +47,17 @@ The main goal of this project was to master the following topics:
 
 ## 🏁 How to Run
 
-1.  Clone this repository:
+1.  Open your **Terminal** (or `Git Bash` on Windows).
+2.  Navigate to the directory (folder) where you want to save the project.
+3.  **Copy and paste** the following command into your terminal and press **Enter**:
+
     ```bash
-    git clone [https://github.com/MatheusLeiteCarneiro/product-manager-cli.git](https://github.com/MatheusLeiteCarneiro/product-manager-cli.git)
+    git clone https://github.com/MatheusLeiteCarneiro/product-manager-cli.git
     ```
-2.  Open the project in your Java IDE.
-3.  Locate and run the `Program.java` file (under `src/application/Program.java`).
+    *(This will create a new folder named `product-manager-cli` with all the project files.)*
+ 
+4. Open the project in your Java IDE.
+5. Locate and run the `Program.java` file (under `src/application/Program.java`).
 
 ---
 
